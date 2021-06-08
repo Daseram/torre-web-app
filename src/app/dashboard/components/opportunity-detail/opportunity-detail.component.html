@@ -1,0 +1,51 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="returnToSearch()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+</mat-toolbar>
+<div class="container">
+    <div class="info-card">
+        <mat-card>
+            <mat-card-header class="default-card-header" >
+                <mat-card-title>{{jobInfo?.objective}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="skills">
+                    <h4>Skills and Experience:</h4>
+                    <div *ngFor="let skill of jobInfo?.strengths">
+                        <mat-chip-list aria-label="skills">
+                            <mat-chip selected color="primary">{{skill?.name}}: {{skill.experience}}</mat-chip>
+                        </mat-chip-list>
+                    </div>
+                </div>
+                <div class="skills">
+                    <h4>Conditions And Agreements:</h4>
+                    <div>
+                        <ul>
+                            <li>
+                                Type: {{jobInfo?.agreement?.type}}
+                            </li>
+                            <li>
+                                Commitment: {{jobInfo?.commitment?.code}}
+                            </li>
+                            <li>
+                                Compensation: {{jobInfo?.compensation?.minAmount}} {{jobInfo?.compensation?.currency}} - {{jobInfo?.compensation?.maxAmount}} {{jobInfo?.compensation?.currency}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="company">
+        <mat-card>
+            <mat-card-header class="default-card-header" >
+                <mat-card-title>{{jobInfo?.organizations[0]?.name}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <div [innerHtml]="jobInfo?.serpTags?.description">
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

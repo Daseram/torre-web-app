@@ -1,0 +1,42 @@
+.login-card {
+    max-width: 400px;
+    min-width: 400px;
+    padding: 0px;
+}
+
+mat-card-content {
+    padding: 8px;
+    margin-bottom: 0px;
+}
+
+mat-card-header mat-card-title {
+    margin-bottom: 0px;
+}
+
+mat-card-actions {
+    padding: 8px 8px;
+    margin: 0px;
+}
+
+.main-div{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-card-header {
+    background-color: #0072c6;
+    justify-content: center;
+}
+
+.login-button {
+    width: 100%;
+    background-color: #0072c6;
+}
+
+.hint {
+    text-align: end;
+    margin-top: -15px;
+    color: red;
+}

@@ -1,0 +1,68 @@
+<div class="main-div">
+    <mat-card class="login-card">
+        <mat-card-header class="default-card-header ">
+            <mat-card-title>
+                Welcome
+            </mat-card-title>
+        </mat-card-header>
+        <mat-tab-group mat-stretch-tabs #tabs>
+            <mat-tab label="Login">
+                <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+                    <mat-card-content>
+                        <mat-form-field class="input-full-width">
+                            <mat-icon matSuffix>email</mat-icon>
+                            <span matPrefix>&nbsp;</span>
+                            <input matInput placeholder="Email" name="email" formControlName="email">                         
+                        </mat-form-field>
+                        <div class="hint" *ngIf="loginForm.get('email').errors?.email">
+                            <small>Email address is invalid</small> 
+                        </div>                                               
+                        <mat-form-field class="input-full-width">
+                            <mat-icon matSuffix>vpn_key</mat-icon>
+                            <span matPrefix>&nbsp;</span>
+                            <input matInput placeholder="Password" type="password" name="password" formControlName="password">
+                        </mat-form-field>
+                        <div class="hint" *ngIf="loginForm.get('password').errors?.password">
+                            <small>Password is required</small>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button class="login-button" type="submit" mat-raised-button color="primary"
+                        [disabled]="!loginForm.valid || disabled">Login</button>
+                    </mat-card-actions>
+                </form>
+            </mat-tab>
+            <mat-tab label="Register">
+                <form class="login-form" [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)">
+                    <mat-card-content>                        
+                        <mat-form-field class="input-full-width">
+                            <mat-icon matSuffix>person</mat-icon>
+                            <span matPrefix>&nbsp;</span>
+                            <input matInput placeholder="Name" name="name" formControlName="name">                         
+                        </mat-form-field>                        
+                        <mat-form-field class="input-full-width">
+                            <mat-icon matSuffix>email</mat-icon>
+                            <span matPrefix>&nbsp;</span>
+                            <input matInput placeholder="Email" name="email" formControlName="email">                         
+                        </mat-form-field>
+                        <div class="hint" *ngIf="registerForm.get('email').errors?.email">
+                            <small>Email address is invalid</small>
+                        </div>
+                        <mat-form-field class="input-full-width">
+                            <mat-icon matSuffix>vpn_key</mat-icon>
+                            <span matPrefix>&nbsp;</span>
+                            <input matInput placeholder="Password" type="password" name="password" formControlName="password">
+                        </mat-form-field>
+                        <div class="hint" *ngIf="(registerForm.get('password').invalid && registerForm.get('password').touched) || registerForm.get('password').dirty" >
+                            <small *ngIf="registerForm.get('password').errors">Password should be 6 characters length min</small>
+                        </div>                                                
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button class="login-button" type="submit" mat-raised-button color="primary"
+                        [disabled]="!registerForm.valid || disabled">Register</button>
+                    </mat-card-actions>
+                </form>
+            </mat-tab>
+        </mat-tab-group>        
+    </mat-card>
+</div>

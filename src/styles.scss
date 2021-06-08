@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; background-color:#F0F0F0 }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.info {
+    background: #2196F3;
+    color: #fff;
+}
+.success {
+    background: #4BB543;
+    color: #fff;
+}
+.error {
+    background: #B00020;
+    color: #fff;
+}
+
+.mat-simple-snackbar-action {
+    color: #fff;
+}
+
+.input-full-width {
+    min-width: 100%;
+}
+
+.default-card-header {
+    background-color: #0072c6;
+    color: white;
+    padding: 8px;
+}

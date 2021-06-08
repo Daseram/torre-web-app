@@ -1,0 +1,85 @@
+<div class="main-div">
+    <mat-card>
+        <mat-card-header class="default-card-header" >
+            <mat-card-title>Start looking for new opportunities or new people to connect with</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-tab-group mat-stretch-tabs #tabs>
+                <mat-tab label="Opportunities" >
+                    <div class="search-bar">
+                        <form [formGroup]="opportunitiesForm" (ngSubmit)="onSubmitOpportunities(opportunitiesForm.value)">
+                            <mat-form-field appearance="outline" class="input-full-width">
+                                <mat-label>find the best opportunities</mat-label>
+                                <input matInput placeholder="" formControlName="search">
+                                <button mat-icon-button matSuffix (click)="onSubmitOpportunities(opportunitiesForm.value)" [disabled]="!opportunitiesForm.valid">
+                                    <mat-icon>search</mat-icon>
+                                </button>
+                            </mat-form-field>
+                            <div class="search-option">
+                                <div><h4>Improve your search:</h4></div>
+                                <p><mat-checkbox formControlName="open" color="primary">Open</mat-checkbox></p>
+                                <p><mat-checkbox formControlName="remote" color="primary">Remote</mat-checkbox></p>
+                            </div>
+                        </form>
+                    </div>
+                    <mat-card *ngFor="let opportunity of opportunities" class="job-results" (click)="goToJobDetail(opportunity?.id)">
+                        <mat-card-header class="default-card-header" >
+                            <mat-card-title>{{opportunity?.objective}}</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="job-info">
+                            <div class="organization">
+                                <div *ngFor="let organization of opportunity?.organizations">
+                                    <mat-chip-list aria-label="organization">
+                                        <mat-chip>Organization: {{organization?.name}}</mat-chip>
+                                    </mat-chip-list>
+                                </div>
+                            </div>
+                            <div class="status">
+                                <mat-chip-list aria-label="organization">
+                                    <mat-chip color="warn" selected><mat-icon>notifications</mat-icon> {{opportunity?.status}}</mat-chip>
+                                </mat-chip-list>
+                            </div>
+                            <div class="skills">
+                                <div><h4> Desired Skills:</h4></div>                                
+                                <mat-chip-list aria-label="skills">
+                                    <mat-chip color="primary" selected *ngFor="let skill of opportunity?.skills">{{skill?.name}}</mat-chip>
+                                </mat-chip-list>
+                            </div>
+                            <div class="time"></div>
+                        </mat-card-content>
+                    </mat-card> 
+                </mat-tab>
+                <mat-tab label="People">
+                    <div class="search-bar">
+                        <form [formGroup]="peopleForm" (ngSubmit)="onSubmitPeople(peopleForm.value)">
+                            <mat-form-field appearance="outline" class="input-full-width">
+                                <mat-label>look for new contacts</mat-label>
+                                <input matInput placeholder="Placeholder" formControlName="name">
+                                <button mat-icon-button matSuffix (click)="onSubmitPeople(peopleForm.value)" [disabled]="!peopleForm.valid">
+                                    <mat-icon>search</mat-icon>
+                                </button>
+                            </mat-form-field>   
+                        </form>                     
+                    </div>
+                    <mat-card *ngFor="let person of people" class="people">
+                        <mat-card-header>
+                            <div mat-card-avatar [style.background-image]="'url(' + person?.picture + ')'" class="avatar"></div>
+                            <mat-card-title>{{person?.name}}</mat-card-title>
+                            <mat-card-subtitle>{{person?.professionalHeadline}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <div class="user-skills">
+                                <div><h4> Skills:</h4></div>                                
+                                <mat-chip-list aria-label="skills">
+                                    <mat-chip  *ngFor="let skill of person?.skills">Organization: {{skill?.name}}</mat-chip>
+                                </mat-chip-list>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-tab>
+
+            </mat-tab-group>
+            
+          </mat-card-content>
+    </mat-card>
+</div>
